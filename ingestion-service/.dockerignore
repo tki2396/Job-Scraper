@@ -1,0 +1,11 @@
+# .dockerignore
+__pycache__/
+.venv/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache/
+.coverage
+*.log
+.DS_Store

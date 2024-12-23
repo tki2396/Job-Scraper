@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-data:/data/db
+    command: ["mongod", "--bind_ip_all"]
+    restart: always
+  crawler:
+    build: 
+     context: ./ingestion
+     dockerfile: Dockerfile
+    depends_on:
+      - mongo
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./ingestion/.env
+    
