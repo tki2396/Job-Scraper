@@ -1,4 +1,4 @@
-FROM  public.ecr.aws/lambda/python:3.11 as build
+FROM public.ecr.aws/lambda/python:3.11 AS build
 
 # Install chrome driver and browser
 RUN yum install -y unzip && \
@@ -7,13 +7,19 @@ RUN yum install -y unzip && \
     unzip /tmp/chromedriver.zip -d /opt/ && \
     unzip /tmp/chrome-linux.zip -d /opt/
 
-FROM  public.ecr.aws/lambda/python:3.11
+FROM public.ecr.aws/lambda/python:3.11
+
+ENV POETRY_VERSION=1.8.3
 
 # Install the function's OS dependencies using yum
 RUN yum install -y \
-  atk wget git cups-libs gtk3 libXcomposite alsa-lib libXcursor \
+  atk wget git cups-libs gtk3 libXcomposite alsa-lib libXcursor
+  
+RUN yum install -y \
   libXdamage libXext libXi libXrandr libXScrnSaver libXtst \
-  pango at-spi2-atk libXt xorg-x11-server-Xvfb xorg-x11-xauth \
+  pango at-spi2-atk libXt xorg-x11-server-Xvfb xorg-x11-xauth 
+  
+RUN yum install -y \
   dbus-glib dbus-glib-devel nss mesa-libgbm ffmpeg libxext6 \
   libssl-dev libcurl4-openssl-dev libpq-dev && \
   yum clean all
