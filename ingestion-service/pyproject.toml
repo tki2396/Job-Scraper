@@ -7,13 +7,14 @@ readme = "README.md"
 
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 selenium = "^4.25.0"
 beautifulsoup4 = "^4.12.3"
 pydantic = "^2.9.2"
 webdriver-manager = "^4.0.2"
 pydantic-settings = "^2.5.2"
 aws-lambda-powertools = "^3.0.0"
+aws-xray-sdk = "^2.14.0"
 
 
 [build-system]

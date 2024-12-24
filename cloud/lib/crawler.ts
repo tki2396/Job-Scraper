@@ -1,4 +1,5 @@
 import { aws_lambda as lambda } from "aws-cdk-lib";
+import { Architecture } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import path = require("path");
 
@@ -18,6 +19,7 @@ export class Crawler {
     // Crawler Lambda function
     new lambda.DockerImageFunction(scope, id, {
       code: lambda.DockerImageCode.fromImageAsset(`${SERVICE_DIR}/${SERVICE_NAME}`),
+      architecture: Architecture.X86_64
     });
   }
 }
